@@ -9,6 +9,7 @@ require 'fileutils'
 
 # Include YUI as the default
 require 'yui/compressor'
+require 'cssmin'
 
 # Try Closure.
 begin

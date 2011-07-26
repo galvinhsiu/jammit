@@ -57,7 +57,6 @@ module Jammit
     # provided with YUI Compressor, Google Closure Compiler or UglifyJS.
     def initialize
       Jammit.check_java_version
-      @css_compressor = YUI::CssCompressor.new(Jammit.css_compressor_options || {})
       flavor          = Jammit.javascript_compressor || Jammit::DEFAULT_COMPRESSOR
       @options        = DEFAULT_OPTIONS[flavor].merge(Jammit.compressor_options || {})
       @js_compressor  = COMPRESSORS[flavor].new(@options)
@@ -80,7 +79,7 @@ module Jammit
     def compress_css(paths, variant=nil, asset_url=nil)
       @asset_contents = {}
       css = concatenate_and_tag_assets(paths, variant)
-      css = @css_compressor.compress(css) if Jammit.compress_assets
+      css = CSSMin.minify(css) if Jammit.compress_assets
       case variant
       when nil      then return css
       when :datauri then return with_data_uris(css)

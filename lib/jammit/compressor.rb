@@ -44,7 +44,7 @@ module Jammit
     COMPRESSORS = {
       :yui      => YUI::JavaScriptCompressor,
       :closure  => Jammit.compressors.include?(:closure)  ? Closure::Compiler : nil,
-      :jsmin    => Jammit.compressors.include?(:jsmin) ? JSMin : nil,
+      :jsmin    => Jammit.compressors.include?(:jsmin) ? Jammit::JavascriptMin : nil,
       :uglifier => Jammit.compressors.include?(:uglifier) ? Jammit::Uglifier  : nil
     }
 

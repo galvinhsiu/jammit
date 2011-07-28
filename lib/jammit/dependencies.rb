@@ -36,7 +36,7 @@ end
 Jammit.load_configuration(Jammit::DEFAULT_CONFIG_PATH, true) if defined?(Rails)
 
 # Jammit Core:
-require 'jammit/jsmin' if Jammit.compressors.include? :jsmin
+require 'jammit/javascript_min' if Jammit.compressors.include? :jsmin
 require 'jammit/uglifier' if Jammit.compressors.include? :uglifier
 require 'jammit/compressor'
 require 'jammit/packager'

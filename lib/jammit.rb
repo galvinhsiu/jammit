@@ -22,7 +22,7 @@ module Jammit
 
   DEFAULT_JST_NAMESPACE = "window.JST"
 
-  COMPRESSORS           = [:yui, :closure, :uglifier]
+  COMPRESSORS           = [:yui, :closure, :uglifier, :jsmin]
 
   DEFAULT_COMPRESSOR    = :yui
 
@@ -172,7 +172,7 @@ module Jammit
     @css_compressor_options[:java] ||= java if @compressor_options[:java]
     version = (`#{java} -version 2>&1`)[/\d+\.\d+/]
 
-    if @javascript_compressor == :uglifier
+    if @javascript_compressor == :uglifier || @javascript_compressor == :jsmin
       @checked_java_version = true
     else
       disable_compression if !version ||

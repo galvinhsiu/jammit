@@ -44,13 +44,15 @@ module Jammit
     COMPRESSORS = {
       :yui      => YUI::JavaScriptCompressor,
       :closure  => Jammit.compressors.include?(:closure)  ? Closure::Compiler : nil,
+      :jsmin    => Jammit.compressors.include?(:jsmin) ? JSMin : nil,
       :uglifier => Jammit.compressors.include?(:uglifier) ? Jammit::Uglifier  : nil
     }
 
     DEFAULT_OPTIONS = {
       :yui      => {:munge => true},
       :closure  => {},
-      :uglifier => {:copyright => false}
+      :uglifier => {:copyright => false},
+      :jsmin => {}
     }
 
     # The css compressor is always the YUI Compressor. JS compression can be

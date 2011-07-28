@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
                          '--main'     << 'README' <<
                          '--all'
 
+  s.add_dependency 'jsmin'
   s.add_dependency 'cssmin'
   s.add_dependency 'yui-compressor',    ['>= 0.9.3']
 

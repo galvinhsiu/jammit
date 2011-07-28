@@ -8,6 +8,7 @@ require 'pathname'
 require 'fileutils'
 
 # Include YUI as the default
+require 'jsmin'
 require 'yui/compressor'
 require 'cssmin'
 
@@ -25,10 +26,17 @@ rescue LoadError
   Jammit.compressors.delete :uglifier
 end
 
+begin
+  require 'jsmin'
+rescue LoadError
+  Jammit.compressors.delete :jsmin
+end
+
 # Load initial configuration before the rest of Jammit.
 Jammit.load_configuration(Jammit::DEFAULT_CONFIG_PATH, true) if defined?(Rails)
 
 # Jammit Core:
+require 'jammit/jsmin' if Jammit.compressors.include? :jsmin
 require 'jammit/uglifier' if Jammit.compressors.include? :uglifier
 require 'jammit/compressor'
 require 'jammit/packager'
